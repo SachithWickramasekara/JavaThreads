@@ -1,20 +1,15 @@
 public class RunnableThread implements Runnable {
-
-    private int[] array;
-
-    public RunnableThread (int[] array){
-        this.array = array;
-
+    private int[] arr;
+    public RunnableThread(int[] arr) {
+        this.arr = arr;
     }
-
 
     @Override
     public void run() {
-        for(int i : array){
-
-            System.out.println("Thread name : " + Thread.currentThread().getName() + " " + "Square of i : " + Math.pow(i,2) );
+        for (int num : arr) {
+            System.out.println(Thread.currentThread().getName() + " " + num);
             try {
-                Thread.sleep(200);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

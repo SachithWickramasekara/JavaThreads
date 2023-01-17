@@ -1,20 +1,19 @@
-public class MyThread extends Thread {
+import sun.applet.Main;
 
-    private int[] array;
+public class MyThread extends Thread{
+    private int[] dataset;
 
-    public MyThread(String name, int[] array){
-
+    public MyThread(String name, int[] dataset) {
         super(name);
-        this.array = array;
+        this.dataset = dataset;
     }
 
     @Override
-    public void run(){
-        for(int i : array){
-
-            System.out.println("Thread name : " + Thread.currentThread().getName() + " " + "Square of i : " + Math.pow(i,2) );
+    public void run() {
+        for (int data : dataset) {
+            System.out.println(Thread.currentThread().getName() + " " + Math.pow(data, 2));
             try {
-                Thread.sleep(200);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

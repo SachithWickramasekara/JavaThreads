@@ -1,25 +1,27 @@
-public class Multithreading {
-
-    public static void main(String[]args) throws InterruptedException{
+public class MultiThreading {
+    public static void main(String[] args) {
         System.out.println(Thread.currentThread().getName());
-        // System.out.println(5/0);
-
-        Thread myOtherThread = new MyThread("myOtherThread", new int[]{5,6,7,8});
-        myOtherThread.start();
-
-
-        Runnable runnableThread = new RunnableThread(new int[]{13,14,15,16});
-        Thread thread = new Thread(runnableThread,"thread");
+//        System.out.println(10/0);
+        Thread thread = new MyThread("My thread", new int[]{1, 2, 3, 4});
         thread.start();
 
+        int[] arr = {5, 6, 7, 8};
 
-        Thread myThread = new MyThread("myThread",new int[]{1,2,3,4});
-        myThread.start();
+        Thread thread1 = new MyThread("Second thread", arr);
+        thread1.start();
 
-        int[] anotherArray = {9,10,11,12};
-        for(int i : anotherArray){
-            System.out.println("Thread name : " + Thread.currentThread().getName() + "  :  " + i);
-            Thread.sleep(200);
+        for (int i=0; i<10; i++) {
+            System.out.println(Thread.currentThread().getName() + " " + i);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
+        int[] arr2 = {9, 10, 11, 12};
+        Runnable runnable = new RunnableThread(arr2);
+        Thread thread2 = new Thread(runnable, "Thread 3");
+        thread2.start();
     }
 }
